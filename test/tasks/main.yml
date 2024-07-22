@@ -1,0 +1,23 @@
+---
+# tasks file for test
+- name: nginx install
+  ansible.builtin.apt:
+   update_cache: yes
+   name: apache2
+   state: present
+
+- name : copy file
+  ansible.builtin.copy:
+   src: files/file.html
+   dest: /var/www/html/
+   owner: www-data
+   group: www-data
+   mode: '0644'
+
+- name: restart service
+  ansible.builtin.service:
+    name: apache2
+    state: restarted
+
+   
+
